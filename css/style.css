@@ -1,0 +1,224 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #555;
+    color: #f0f0f0;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.container {
+    text-align: center;
+}
+
+.logo {
+    font-size: 4em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2em;
+}
+
+.logo-image {
+    width: 7em;
+    height: 3em;
+    vertical-align: middle;
+    display: flex;
+}
+
+.subtitle {
+    margin-top: 10px;
+    font-size: 1.2em;
+}
+
+.links {
+    margin-top: 20px;
+    font-size: 1.1em;
+    line-height: 1.6em;
+}
+
+.links a {
+    display: block;
+    color: #f0f0f0;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.links a:hover {
+    color: #ccc;
+}
+
+/* Artworks Page Styles */
+.gallery-container {
+    max-width: 1200px;
+    padding: 20px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #f7df1e;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.caption {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #f0f0f0;
+    font-size: 1em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-align: center;
+}
+
+.gallery-item:hover .caption {
+    opacity: 1;
+}
+
+.lightbox {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-content {
+    display: block;
+    margin: auto;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .logo {
+        font-size: 3.5em; /* Adjust logo size on smaller screens */
+    }
+
+    .subtitle {
+        font-size: 1.1em; /* Adjust subtitle size */
+    }
+
+    .links {
+        font-size: 1em; /* Adjust link size */
+    }
+
+    h1 {
+        font-size: 2em; /* Adjust header size */
+    }
+
+    .gallery-grid {
+        gap: 15px; /* Reduce gap between items */
+    }
+
+    .caption {
+        font-size: 0.9em; /* Smaller caption font size */
+    }
+}
+
+@media (max-width: 768px) {
+    .logo {
+        font-size: 3em; /* Further adjust logo size */
+    }
+
+    .subtitle {
+        font-size: 1em; /* Further adjust subtitle size */
+    }
+
+    .links {
+        font-size: 0.9em; /* Further adjust link size */
+    }
+
+    h1 {
+        font-size: 1.8em; /* Further adjust header size */
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr; /* Stack images vertically on small screens */
+        gap: 10px; /* Further reduce gap */
+    }
+
+    .caption {
+        font-size: 0.8em; /* Smaller caption font size */
+    }
+
+    .close {
+        font-size: 30px; /* Adjust close button size */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 2.5em; /* Adjust logo size for mobile */
+    }
+
+    .subtitle {
+        font-size: 0.9em; /* Adjust subtitle size for mobile */
+    }
+
+    .links {
+        font-size: 0.8em; /* Adjust link size for mobile */
+    }
+
+    h1 {
+        font-size: 1.5em; /* Adjust header size for mobile */
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr; /* Ensure one image per row on very small screens */
+    }
+}
+
