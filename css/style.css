@@ -224,6 +224,6 @@ h1 {
         grid-template-columns: 1fr; /* Ensure one image per row on very small screens */
     }
     .gallery-item img {
-        max-height: 200px; /* Reduce max height for very small screens */
+        max-height: 100px; /* Reduce max height for very small screens */
     }
 }
