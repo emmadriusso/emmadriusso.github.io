@@ -1,3 +1,4 @@
+* /* Default body styles */
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #565675;
+    background-color: #565675;  /* Default background color */
     color: #f0f0f0;
     font-family: 'DM Sans', sans-serif;
 }
@@ -87,8 +88,8 @@ h1 {
 
 .gallery-item img {
     width: 100%;
-    height: auto; /* Maintain the aspect ratio */
-    object-fit: contain; /* Show the full image without cropping */
+    height: auto;
+    object-fit: contain;
     transition: transform 0.3s ease;
     border-radius: 8px;
 }
@@ -112,15 +113,14 @@ h1 {
 
 .gallery-item img {
     width: 100%;
-    height: auto; /* Maintain the aspect ratio */
-    object-fit: contain; /* Contain the image within the space without cropping */
+    height: auto;
+    object-fit: contain;
     transition: transform 0.3s ease;
     border-radius: 8px;
 }
 
-
 .lightbox {
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -144,74 +144,79 @@ h1 {
     right: 30px;
     color: white;
     font-size: 40px;
-    font-weight: bold;
+    font-weight: normal;
     cursor: pointer;
+}
+
+/* Specific styles for Artworks Page */
+body.artworks-page {
+    background-color: #ffb9e0; /* New background color for "My Artworks" page */
 }
 
 /* Responsive Styles */
 @media (max-width: 1200px) {
     .logo {
-        font-size: 3.5em; /* Adjust logo size on smaller screens */
+        font-size: 3.5em;
     }
 
     .subtitle {
-        font-size: 1.1em; /* Adjust subtitle size */
+        font-size: 1.1em;
     }
 
     .links {
-        font-size: 1em; /* Adjust link size */
+        font-size: 1em;
     }
 
     h1 {
-        font-size: 2em; /* Adjust header size */
+        font-size: 2em;
     }
 
     .gallery-grid {
-        gap: 15px; /* Reduce gap between items */
+        gap: 15px;
     }
 
     .caption {
-        font-size: 0.9em; /* Smaller caption font size */
+        font-size: 0.9em;
     }
 }
 
 @media (max-width: 768px) {
     .logo {
-        font-size: 3em; /* Further adjust logo size */
+        font-size: 3em;
     }
 
     .subtitle {
-        font-size: 1em; /* Further adjust subtitle size */
+        font-size: 1em;
     }
 
     .links {
-        font-size: 0.9em; /* Further adjust link size */
+        font-size: 0.9em;
     }
 
     h1 {
-        font-size: 1.8em; /* Further adjust header size */
+        font-size: 1.8em;
     }
 
     .gallery-grid {
-        grid-template-columns: 1fr; /* Stack images vertically on small screens */
-        gap: 10px; /* Further reduce gap */
+        grid-template-columns: 1fr;
+        gap: 10px;
     }
 
     .caption {
-        font-size: 0.8em; /* Smaller caption font size */
+        font-size: 0.8em;
     }
 
     .close {
-        font-size: 30px; /* Adjust close button size */
+        font-size: 30px;
     }
 }
-
 
 @media (max-width: 480px) {
     .gallery-grid {
         grid-template-columns: 1fr;
     }
+
     .gallery-item img {
-        max-height: none; /* Let the image scale naturally without restricting height */
+        max-height: none;
     }
 }
