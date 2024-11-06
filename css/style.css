@@ -151,6 +151,7 @@ h1 {
 /* Specific styles for Artworks Page */
 body.artworks-page {
     background-color: #ffb9e0; /* New background color for "My Artworks" page */
+    color: #000000;
 }
 
 /* Responsive Styles */
