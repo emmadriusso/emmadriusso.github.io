@@ -8,7 +8,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #565675;
     color: #f0f0f0;
     font-family: 'DM Sans', sans-serif;
@@ -88,7 +88,7 @@ h1 {
 .gallery-item img {
     width: 100%;
     height: auto; /* Maintain the aspect ratio */
-    object-fit: cover; /* Cover the area without stretching */
+    object-fit: contain; /* Show the full image without cropping */
     transition: transform 0.3s ease;
     border-radius: 8px;
 }
@@ -110,9 +110,14 @@ h1 {
     text-align: center;
 }
 
-.gallery-item:hover .caption {
-    opacity: 1;
+.gallery-item img {
+    width: 100%;
+    height: auto; /* Maintain the aspect ratio */
+    object-fit: contain; /* Contain the image within the space without cropping */
+    transition: transform 0.3s ease;
+    border-radius: 8px;
 }
+
 
 .lightbox {
     display: none; /* Hidden by default */
@@ -203,26 +208,10 @@ h1 {
 
 
 @media (max-width: 480px) {
-    .logo {
-        font-size: 2.5em; /* Adjust logo size for mobile */
-    }
-
-    .subtitle {
-        font-size: 0.9em; /* Adjust subtitle size for mobile */
-    }
-
-    .links {
-        font-size: 0.8em; /* Adjust link size for mobile */
-    }
-
-    h1 {
-        font-size: 1.5em; /* Adjust header size for mobile */
-    }
-
     .gallery-grid {
-        grid-template-columns: 1fr; /* Ensure one image per row on very small screens */
+        grid-template-columns: 1fr;
     }
     .gallery-item img {
-        max-height: 100px; /* Reduce max height for very small screens */
+        max-height: none; /* Let the image scale naturally without restricting height */
     }
 }
