@@ -227,12 +227,12 @@ body.artworks-page {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%; /* Adjust width as needed */
+    width: 200%; /* Adjust width as needed */
     margin: 0 auto; /* Centering */
 }    
 
 
 .gif-container img {
-    max-width: 80%; /* Adjust size */
+    max-width: 100%; /* Adjust size */
     height: auto; /* Maintain aspect ratio */
 }
