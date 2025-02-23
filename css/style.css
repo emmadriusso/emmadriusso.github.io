@@ -222,15 +222,3 @@ body.artworks-page {
     }
 }
 
-.container {
-    display: flex;
-    justify-content: center;  /* Centers horizontally */
-    align-items: center;      /* Centers vertically */
-    height: 100vh;            /* Full viewport height */
-    background-color: #f0f0f0;
-}
-
-.gif {
-    width: 50%;  /* Adjust size as needed */
-    max-width: 500px;
-}
