@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Rain Widget</title>
+    <style>
+        html,body { height:100%; }
+        body {
+            margin:0;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background: #111;
+            color:#fff;
+            font-family:Segoe UI, Roboto, Arial, sans-serif;
+        }
+        .widget {
+            position:relative;
+            display:inline-block;
+            box-shadow:0 20px 60px rgba(0,0,0,0.6);
+            border-radius:8px;
+            overflow:hidden;
+            background:#000;
+        }
+        img.base {
+            display:block;
+            max-width:100%;
+            height:auto;
+            ;
+        }
+        canvas.rain {
+            position:absolute;
+            left:0;top:0;
+            width:100%;height:100%;
+            pointer-events:none;
+        }
+        .controls {
+            position:relative;
+            margin:12px auto 0;
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <div class="widget" id="widget">
+        <img class="base" id="bg" src="finestra.jpg" alt="background">
+        
+        <img class="base" id="bg" src="gas-station.jpg" alt="background">
+        <canvas class="rain" id="rain"></canvas>
+    </div>
+
+    <script>
+    // Rain effect using canvas. Time-based so screenshots capture consistent frames.
+    (function(){
+        const img = document.getElementById('bg');
+        const canvas = document.getElementById('rain');
+        const widget = document.getElementById('widget');
+        const ctx = canvas.getContext('2d');
+
+        // Raindrop settings
+        const drops = [];
+        const DROP_COUNT = 180; // adjust density
+
+        function resize(){
+            const w = img.naturalWidth || img.width;
+            const h = img.naturalHeight || img.height;
+            canvas.width = w;
+            canvas.height = h;
+            widget.style.width = w + 'px';
+            widget.style.height = h + 'px';
+        }
+
+        function rand(min,max){ return Math.random()*(max-min)+min; }
+
+        function initDrops(){
+            drops.length = 0;
+            for(let i=0;i<DROP_COUNT;i++){
+                drops.push({
+                    x: rand(0, canvas.width),
+                    y: rand(-canvas.height, canvas.height),
+                    len: rand(8, 22),
+                    speed: rand(200, 700), // pixels per second
+                    width: rand(1,2.5),
+                    opacity: rand(0.1,0.4)
+                });
+            }
+        }
+
+        let last = performance.now();
+        function frame(now){
+            const dt = (now - last) / 1000; // seconds
+            last = now;
+
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            ctx.lineCap = 'round';
+
+            for(let d of drops){
+                d.y += d.speed * dt;
+                if(d.y > canvas.height + d.len){
+                    d.y = rand(-50, -10);
+                    d.x = rand(0, canvas.width);
+                    d.len = rand(8, 22);
+                    d.speed = rand(200, 700);
+                    d.width = rand(1,2.5);
+                    d.opacity = rand(0.08,0.35);
+                }
+
+                ctx.strokeStyle = 'rgba(255,255,255,' + d.opacity + ')';
+                ctx.lineWidth = d.width;
+                ctx.beginPath();
+                ctx.moveTo(d.x, d.y);
+                ctx.lineTo(d.x, d.y + d.len);
+                ctx.stroke();
+            }
+
+            // small splashes
+            // (kept simple to stay performant)
+
+            window.requestAnimationFrame(frame);
+        }
+
+        img.addEventListener('load', ()=>{
+            resize();
+            initDrops();
+            last = performance.now();
+            window.requestAnimationFrame(frame);
+        });
+
+        // If image already cached/loaded
+        if(img.complete && img.naturalWidth){
+            img.dispatchEvent(new Event('load'));
+        }
+
+        // Expose a small API for puppeteer capture script
+        window.__rainWidget = {
+            size: ()=>({w: canvas.width, h: canvas.height}),
+            // returns promise that resolves after given ms
+            wait: (ms)=>new Promise(r=>setTimeout(r, ms)),
+        };
+    })();
+    </script>
+</body>
+</html>
